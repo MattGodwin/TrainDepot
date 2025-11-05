@@ -4,9 +4,23 @@
 
 #ifndef TRAINDEPOT_CARRIAGE_H
 #define TRAINDEPOT_CARRIAGE_H
+#include <string>
+using namespace std;
 
 
 class Carriage {
+    public:
+    Carriage(string id) {};
+
+    bool needsRepairs() const;
+    void flagRepairsNeeded();
+    void performRepairs();
+    void printStatus() const;
+    string getId() const;
+
+    private:
+    string id;
+    bool repairsNeeded;
 };
 
 
