@@ -10,15 +10,17 @@ using namespace std;
 
 class Carriage {
     public:
-    Carriage(string id) {};
+    Carriage(string id);
+
+    virtual ~Carriage() {}
 
     bool needsRepairs() const;
     void flagRepairsNeeded();
     void performRepairs();
-    void printStatus() const;
+    virtual void printStatus() const;
     string getId() const;
 
-    private:
+    protected:
     string id;
     bool repairsNeeded;
 };

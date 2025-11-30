@@ -11,4 +11,6 @@ add_executable(TrainDepot main.cpp
         Platform.cpp
         Platform.h
         Depot.cpp
-        Depot.h)
+        Depot.h
+        PassengerCarriage.h
+        FreightCarriage.h)

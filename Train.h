@@ -10,9 +10,11 @@
 using namespace std;
 
 class Train {
-    Train(string id, int numCarriages);
-
     public:
+    Train(string id, int numCarriages, string type);
+
+    ~Train();
+
     int getLength() const;
     string getId() const;
     void repairCarriage(int carriageIndex);
@@ -21,7 +23,7 @@ class Train {
 
     private:
     string id;
-    vector<Carriage> carriages;
+    vector<Carriage*> carriages;
 };
 
 
