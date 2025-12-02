@@ -2,7 +2,7 @@
 #include "Depot.h"
 using namespace std;
 
-// Demonstration of depot system working
+// Demonstration of depot system working with random scenario
 void depotDemo() {
     cout << "Initialising Train Depot System..." << endl;
     Depot myDepot;
@@ -45,31 +45,52 @@ void depotDemo() {
     cout << "Depot simulation complete." << endl;
 }
 
-void registerTrains(Depot* depot) {
+void registerTrainsMenu(Depot* depot) {
     cout << "How many trains would you like to register? (max: 4)" << endl;
     int numTrains = 0;
     cin >> numTrains;
 
     for (int i = 0; i < numTrains; i++) {
-        cout << "Enter train " << i << " name: ";
+        cout << "Enter train " << i+1 << " name: ";
         string name;
         cin >> name;
-        cout << "Enter train " << i << " length in carriages: ";
+        cout << "Enter train " << i+1 << " length in carriages: ";
         int length;
         cin >> length;
-        cout << "Enter train " << i << " type (freight, passenger): ";
+        cout << "Enter train " << i+1 << " type (freight, passenger): ";
         string type;
         cin >> type;
         depot->registerTrain(name, length, type);
     }
 }
 
-void receiveTrain(Depot* depot) {
+void receiveTrainMenu(Depot* depot) {
     cout << "What is the name of the train you would like to receive:" << endl;
     string trainName;
     cin >> trainName;
     depot->receiveTrain(trainName);
 
+}
+
+void flagCarriageForRepairMenu(Depot* depot) {
+    cout << "Enter the platform ID and carriage index you would like to flag for repair (seperated by a space):" << endl;
+    int platformId, carriageIndex;
+    cin >> platformId >> carriageIndex;
+    depot->flagCarriageForRepairOnPlatform(platformId, carriageIndex);
+}
+
+void repairCarriageMenu(Depot* depot) {
+    cout << "Enter the platform ID and carriage index you would like to repair (seperated by a space):" << endl;
+    int platformId, carriageIndex;
+    cin >> platformId >> carriageIndex;
+    depot->serviceCarriageOnPlatform(platformId, carriageIndex);
+}
+
+void dispatchTrainMenu(Depot* depot) {
+    cout << "Enter the platform ID you would like to dispatch the train from:" << endl;
+    int platformId;
+    cin >> platformId;
+    depot->dispatchTrain(platformId);
 }
 
 void newSimulation() {
@@ -84,6 +105,9 @@ void newSimulation() {
         cout << "1. Show Depot Status" << endl;
         cout << "2. Register Trains" << endl;
         cout << "3. Receive Train - Puts train on first free platform in the depot." << endl;
+        cout << "4. Flag Carriage For Repair - Tells system that carriage needs repairing." << endl;
+        cout << "5. Repair Carriage - Repairs carriage." << endl;
+        cout << "6. Dispatch Train - Sends train out of the depot and frees the platform." << endl;
         cout << "7. Exit Program" << endl;
         cout << "-----------------------" << endl;
         cout << "Enter your choice (1,2,3):" << endl;
@@ -93,12 +117,20 @@ void newSimulation() {
             myDepot.printStatus();
             menuChoice = 0;
         } else if (menuChoice == 2) {
-            registerTrains(&myDepot);
+            registerTrainsMenu(&myDepot);
             menuChoice = 0;
         } else if (menuChoice == 3) {
-            receiveTrain(&myDepot);
+            receiveTrainMenu(&myDepot);
             menuChoice = 0;
-
+        } else if (menuChoice == 4) {
+            flagCarriageForRepairMenu(&myDepot);
+            menuChoice = 0;
+        } else if (menuChoice == 5) {
+            repairCarriageMenu(&myDepot);
+            menuChoice = 0;
+        } else if (menuChoice == 6) {
+            dispatchTrainMenu(&myDepot);
+            menuChoice = 0;
         } else if (menuChoice == 7) {
             cout << "Exiting Simulation" << endl;
         } else {
