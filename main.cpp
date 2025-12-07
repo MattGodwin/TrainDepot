@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Depot.h"
+
 using namespace std;
 
 // Demonstration of depot system working with random scenario
